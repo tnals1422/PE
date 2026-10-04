@@ -48,9 +48,9 @@ def topic_filename(line: str) -> str:
     return name
 
 
-def parse_topics(text: str) -> list[tuple[str, str, str]]:
+def parse_headings(text: str) -> list[tuple[str, str | None, str, str]]:
     freq = None
-    items: list[tuple[str, str, str]] = []
+    items: list[tuple[str, str | None, str, str]] = []
     for raw in text.splitlines():
         line = raw.strip()
         if not line:
@@ -62,14 +62,77 @@ def parse_topics(text: str) -> list[tuple[str, str, str]]:
             continue
         if freq is None:
             raise SystemExit(f"출제빈도 제목 없이 토픽이 나왔습니다: {line}")
-        items.append((freq, line, topic_filename(line)))
+        items.append((freq, None, line, topic_filename(line)))
+    return check_items(items)
+
+
+def parse_tree(text: str) -> list[tuple[str, str | None, str, str]]:
+    # 예제의 가지는 칸 2, 6, 10에 있다. 마지막 갈래의 자식은 │ 대신 공백이다.
+    freq = None
+    category = None
+    items: list[tuple[str, str | None, str, str]] = []
+    for raw in text.splitlines():
+        if not raw.strip() or raw.strip().startswith("```"):
+            continue
+        mark = re.search(r"(├──|└──)\s*(.*)$", raw.rstrip())
+        if not mark:
+            continue
+        column = mark.start()
+        if column < 2 or (column - 2) % 4 != 0:
+            raise SystemExit(f"목차 들여쓰기를 읽지 못했습니다: {raw.strip()}")
+        depth = (column - 2) // 4 + 1
+        label = mark.group(2).strip()
+        if depth == 1:
+            freq = frequency(label)
+            if freq is None:
+                raise SystemExit(f"출제빈도를 읽지 못했습니다: {label}")
+            category = None
+            continue
+        if freq is None:
+            raise SystemExit(f"출제빈도 없이 항목이 나왔습니다: {label}")
+        if depth == 2:
+            category = label
+            continue
+        if depth == 3:
+            if category is None:
+                raise SystemExit(f"중간 분류 없이 토픽이 나왔습니다: {label}")
+            items.append((freq, category, label, topic_filename(label)))
+            continue
+        raise SystemExit(f"목차는 출제빈도, 중간 분류, 토픽의 세 층입니다: {label}")
+    return check_items(items)
+
+
+def check_items(
+    items: list[tuple[str, str | None, str, str]],
+) -> list[tuple[str, str | None, str, str]]:
     if not items:
         raise SystemExit("토픽이 없습니다.")
-    names = [name for _, _, name in items]
+    names = [name for _, _, _, name in items]
     duplicates = sorted({name for name in names if names.count(name) > 1})
     if duplicates:
         raise SystemExit("파일명이 겹칩니다: " + ", ".join(duplicates))
     return items
+
+
+def load_topics(text: str) -> list[tuple[str, str | None, str, str]]:
+    if any(("├──" in line or "└──" in line) for line in text.splitlines()):
+        return parse_tree(text)
+    return parse_headings(text)
+
+
+def render_category(category: str, items: list[tuple[str, str | None, str, str]]) -> str:
+    lines = [f"# {category}", ""]
+    current = None
+    for freq, _, _, name in items:
+        if freq != current:
+            if current is not None:
+                lines.append("")
+            lines.append(f"## {freq}")
+            lines.append("")
+            current = freq
+        lines.append(f"- [{name}](<../{name}.md>)")
+    lines.append("")
+    return "\n".join(lines)
 
 
 def subject_dir(root: Path, source: Path) -> Path:
@@ -155,6 +218,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="과목 목록을 토픽 노트로 나눈다.")
     parser.add_argument("--source", required=True, help="과목 목록 markdown 파일")
     parser.add_argument("--repo", help="저장소 루트. 생략하면 git 루트")
+    parser.add_argument("--category", help="이 중간 분류의 토픽과 분류 노트만 만든다")
     parser.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않고 집계만 출력")
     args = parser.parse_args()
 
@@ -167,13 +231,19 @@ def main() -> None:
     folder = subject_dir(root, source)
     tag = subject_tag(folder)
     template = template_path.read_text(encoding="utf-8")
-    items = parse_topics(source.read_text(encoding="utf-8"))
+    items = load_topics(source.read_text(encoding="utf-8"))
+    if args.category:
+        matched = [item for item in items if item[1] == args.category]
+        if not matched:
+            found = ", ".join(sorted({item[1] for item in items if item[1]})) or "없음"
+            raise SystemExit(f"중간 분류가 없습니다: {args.category}. 찾은 것: {found}")
+        items = matched
 
     created = 0
     skipped: list[str] = []
     renamed: list[tuple[str, str]] = []
     counts = {"상": 0, "중": 0, "하": 0, "출제예상": 0}
-    for freq, original, name in items:
+    for freq, _category, original, name in items:
         counts[freq] += 1
         if original != name:
             renamed.append((original, name))
@@ -184,6 +254,26 @@ def main() -> None:
         created += 1
         if not args.dry_run:
             path.write_text(render(template, tag, freq), encoding="utf-8")
+
+    category_rows: list[tuple[str, Path, int]] = []
+    seen_categories: list[str] = []
+    for _freq, category, _original, _name in items:
+        if category and category not in seen_categories:
+            seen_categories.append(category)
+    category_files = [topic_filename(category) for category in seen_categories]
+    category_dups = sorted({name for name in category_files if category_files.count(name) > 1})
+    if category_dups:
+        raise SystemExit("분류 파일명이 겹칩니다: " + ", ".join(category_dups))
+    for category in seen_categories:
+        members = [item for item in items if item[1] == category]
+        category_path = folder / "분류" / f"{topic_filename(category)}.md"
+        if category_path.exists():
+            category_rows.append(("건너뜀", category_path, len(members)))
+            continue
+        category_rows.append(("생성", category_path, len(members)))
+        if not args.dry_run:
+            category_path.parent.mkdir(parents=True, exist_ok=True)
+            category_path.write_text(render_category(category, members), encoding="utf-8")
 
     mode = "미리보기" if args.dry_run else "완료"
     print(f"상태: {mode}")
@@ -205,6 +295,11 @@ def main() -> None:
         print("건너뛴 파일:")
         for name in skipped:
             print(f"- {name}")
+    if category_rows:
+        print(f"분류 생성: {sum(1 for state, _, _ in category_rows if state == '생성')}")
+        print(f"분류 건너뜀: {sum(1 for state, _, _ in category_rows if state == '건너뜀')}")
+        for state, path, count in category_rows:
+            print(f"- {state} {path} ({count})")
 
 
 if __name__ == "__main__":

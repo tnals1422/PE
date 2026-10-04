@@ -17,7 +17,7 @@ tags:
 
 ## 암기법
 
-- 
+- ![](images.jpeg) p p
 
 ## 정리
 

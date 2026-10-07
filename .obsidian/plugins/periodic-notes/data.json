@@ -1,0 +1,34 @@
+{
+  "showGettingStartedBanner": true,
+  "hasMigratedDailyNoteSettings": true,
+  "hasMigratedWeeklyNoteSettings": false,
+  "daily": {
+    "format": "YYYY년 MM월 DD일",
+    "folder": "00_Inbox",
+    "enabled": true
+  },
+  "weekly": {
+    "format": "YYYY년 W주",
+    "template": "",
+    "folder": "00_Inbox",
+    "enabled": true
+  },
+  "monthly": {
+    "format": "YYYY년 MM월",
+    "template": "",
+    "folder": "00_Inbox",
+    "enabled": true
+  },
+  "quarterly": {
+    "format": "YYYY년 Q분기",
+    "template": "",
+    "folder": "00_Inbox",
+    "enabled": true
+  },
+  "yearly": {
+    "format": "YYYY년",
+    "template": "",
+    "folder": "00_Inbox",
+    "enabled": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "defaultFrontmatterMergeStrategy": "MergeAndPreferNewValues",
+  "excludePaths": [],
+  "includePaths": [],
+  "releaseNotesShown": [
+    "3.0.0"
+  ],
+  "replacement": "_",
+  "shouldAddInvalidTitleToFrontmatterTitleKey": true,
+  "shouldAddInvalidTitleToNoteAlias": true,
+  "shouldAllowOnlyCurrentFolderByDefault": false,
+  "shouldAllowSplitIntoUnresolvedPathByDefault": true,
+  "shouldAskBeforeMerging": true,
+  "shouldFixFootnotesByDefault": true,
+  "shouldIncludeFrontmatterWhenSplittingByDefault": false,
+  "shouldMergeHeadingsByDefault": false,
+  "shouldOpenNoteAfterMerge": false,
+  "shouldReplaceInvalidTitleCharacters": true,
+  "shouldTreatTitleAsPathByDefault": true,
+  "template": "",
+  "textAfterExtractionMode": "link"
+}

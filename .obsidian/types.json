@@ -1,0 +1,18 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "페이지수": "number",
+    "카테고리": "multitext",
+    "읽음 여부": "checkbox",
+    "출간일": "date",
+    "노트 생성 시각": "datetime",
+    "수행기간": "date",
+    "시작일": "date",
+    "종료일": "date",
+    "작성일": "date",
+    "마지막 확인": "date",
+    "마지막 회독": "date"
+  }
+}

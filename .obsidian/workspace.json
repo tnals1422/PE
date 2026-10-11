@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AGENTS.md",
+                "file": "07_AI/멀티모달 LLM (Multimodal LLM).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "멀티모달 LLM (Multimodal LLM)"
             }
           }
         ]
@@ -56,7 +56,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#07-AI",
+                "query": "멀티모달",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -77,7 +77,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -159,7 +160,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "AGENTS.md",
+                "file": "07_AI/멀티모달 LLM (Multimodal LLM).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -238,18 +239,23 @@
   },
   "active": "f9ac5921fce2d46e",
   "lastOpenFiles": [
+    "07_AI/분류/AI 응용 & 자연어·운용 기술.md",
+    "07_AI/멀티모달 LLM (Multimodal LLM).md",
+    "숙제/5주차.md",
+    "07_AI/분류/모델 학습 & 최적화.md",
+    "07_AI/분류/주요 알고리즘 & 딥러닝.md",
+    "07_AI/분류/AI 개요 & 기초 이론.md",
+    "07_AI/분류/AI 이론 & 신경망 기본.md",
+    "AGENTS.md",
     "98_resource/추출.md",
     "07_AI/강화학습 (Reinforcement Learning).md",
     "00_Inbox/07_AI 과목 토픽목록.md",
     "07_AI/인공지능 (AI) 개요 및 역사.md",
-    "07_AI/분류/AI 개요 & 기초 이론.md",
     "07_AI/분류/평가 & 테스트 & 인프라.md",
-    "07_AI/분류/주요 알고리즘 & 딥러닝.md",
     "07_AI/분류/응용 언어 기법.md",
     "07_AI/분류/윤리 & 특화 보안.md",
     "07_AI/분류/윤리 & 법·제도 & 거버넌스.md",
     "07_AI/분류/생성형 AI & 최신 LLM 아키텍처.md",
-    "07_AI/분류/모델 학습 & 최적화.md",
     "07_AI/분류/모델 평가 & 신뢰성.md",
     "07_AI/분류/모델 평가 & 데이터 품질.md",
     "07_AI/분류/머신러닝 알고리즘 (지도·비지도·강화).md",
@@ -257,14 +263,9 @@
     "07_AI/분류/기초 수학 & 이론.md",
     "07_AI/분류/고도화 알고리즘 & 학습 기법.md",
     "07_AI/분류/거버넌스 & 미래 기술.md",
-    "07_AI/분류/AI 이론 & 신경망 기본.md",
-    "07_AI/분류/AI 응용 & 자연어·운용 기술.md",
     "07_AI/분류",
     "07_AI/고영향 인공지능 판단 가이드라인.md",
     "07_AI/AI 개인정보보호 자율점검표.md",
-    "07_AI/EU AI Act.md",
-    "07_AI/AI 기본법 (인공지능 발전과 신뢰 기반 조성 등에 관한 기본법).md",
-    "07_AI/딥페이크 (Deepfake) 방지 및 탐지.md",
     "숙제",
     "97_자료",
     "01_경영관리(MG)/분류",

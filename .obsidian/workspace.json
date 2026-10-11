@@ -77,8 +77,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -237,7 +236,7 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "f9ac5921fce2d46e",
+  "active": "24b568878afa78f5",
   "lastOpenFiles": [
     "07_AI/분류/AI 응용 & 자연어·운용 기술.md",
     "07_AI/멀티모달 LLM (Multimodal LLM).md",

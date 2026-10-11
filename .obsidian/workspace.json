@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "04_디지털서비스(SV)/검색서비스 구조.md",
+                "file": "정보관리기술사_학습방법_설명서.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "검색서비스 구조"
+              "title": "정보관리기술사_학습방법_설명서"
             }
           },
           {
@@ -86,7 +86,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "출제빈도 상 tag:#04-SV  ",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -107,8 +107,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -190,7 +189,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "04_디지털서비스(SV)/검색서비스 구조.md",
+                "file": "정보관리기술사_학습방법_설명서.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -267,12 +266,18 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "ec26f2855423072f",
+  "active": "f9ac5921fce2d46e",
   "lastOpenFiles": [
+    "숙제/5주차.md",
+    "숙제/4주차.md",
+    "숙제/3주차.md",
+    "숙제/2주차.md",
+    "숙제/1주차.md",
+    "04_디지털서비스(SV)/검색서비스 구조.md",
+    "숙제",
     "01_경영관리(MG)/ERP · XRP · ERP II.md",
     "04_디지털서비스(SV)/분류/클라우드 & 가상화.md",
     "00_Inbox/무제.md",
-    "4주차.md",
     "04_디지털서비스(SV)/Hybrid Cloud.md",
     "04_디지털서비스(SV)/Private Cloud.md",
     "04_디지털서비스(SV)/Public Cloud.md",
@@ -291,11 +296,6 @@
     "04_디지털서비스(SV)/3D Printing.md",
     "01_경영관리(MG)/7S Model.md",
     "01_경영관리(MG)/5 Forces Model.md",
-    "01_경영관리(MG)/3C · 4C 분석.md",
-    "00_Inbox/IT경영전략.md",
-    "01_경영관리(MG)/분류/정책 & 규제 & 표준.md",
-    "01_경영관리(MG)/분류/전략 수립 & 프레임워크.md",
-    "01_경영관리(MG)/분류/전략 수립 & 분석 기법.md",
     "01_경영관리(MG)/분류",
     "02_프로젝트관리(PM)/분류",
     "04_디지털서비스(SV)/분류",
@@ -305,7 +305,6 @@
     "00_Inbox",
     "10_알고리즘,자료구조",
     "09_확률,통계",
-    "08_CA,OS",
     "99_attachements/images 1.jpeg",
     "99_attachements/images (1).jpeg",
     "99_attachements/images.jpeg",
